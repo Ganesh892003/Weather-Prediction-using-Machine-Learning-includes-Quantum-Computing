@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Signup.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Authentication</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-form">
+        <div class="heading">
+          <h2 id="form-title">Signup</h2>
+          <p>Welcome back! Please enter your details.</p>
+        </div>
+        <form id="auth-form" action="/signup" method="POST">
+          <div class="input-field">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="joe.doe@gmail.com"
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Password"
+            />
+          </div>
+          <div class="input-field" id="confirm-password-field">
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              required
+              placeholder="Confirm Password"
+            />
+          </div>
+
+          <button type="submit" class="auth-button">Signup</button>
+        </form>
+        <a href="/" class="Sign-up" id="form-toggle"
+          >Already have an Account? Sign in</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

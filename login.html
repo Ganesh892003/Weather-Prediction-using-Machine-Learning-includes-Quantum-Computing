@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Login.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Authentication</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-form">
+        <div class="heading">
+          <h2 id="form-title">Login</h2>
+          <p>Welcome back! Please enter your details.</p>
+        </div>
+        <form id="auth-form" action="/" method="POST" enctype="application/json">
+          <div class="input-field">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="joe.doe@gmail.com"
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Password"
+            />
+          </div>
+          <input type="hidden" id="latitude" name="latitude" />
+          <input type="hidden" id="longitude" name="longitude" />
+          <button type="submit" class="auth-button">Login</button>
+        </form>
+        <a href="/signup" class="Sign-up" id="form-toggle"
+          >Don't have an Account? Sign up</a
+        >
+      </div>
+    </div>
+  </body>
+  <!-- ... your HTML code ... -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    getLocation().then(function (position) {
+        // Update hidden input fields with latitude and longitude values
+        document.getElementById('latitude').value = position.coords.latitude;
+        document.getElementById('longitude').value = position.coords.longitude;
+
+        // Make an AJAX POST request to /map_2
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/map_2', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        var data = JSON.stringify({ latitude: position.coords.latitude, longitude: position.coords.longitude });
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log('Server response:', response);
+                    // Update your HTML with the received data (police station name)
+                    document.getElementById('map').innerHTML = response.map;
+
+                    document.getElementById('police-station').textContent = response.police_station_name;
+                    document.getElementById('police-station-destination').textContent = response.destination;
+                    // document.getElementById('connect-response').textContent = response.message;
+                } else {
+                    console.error('Error:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        xhr.send(data);
+    }).catch(function (error) {
+        console.error('Error getting location:', error);
+    });
+
+    // Function to get current location
+    function getLocation() {
+        return new Promise(function (resolve, reject) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        resolve(position);
+                    },
+                    function (error) {
+                        reject(error);
+                    }
+                );
+            } else {
+                reject('Geolocation is not supported by this browser.');
+            }
+        });
+    }
+});
+
+</script>
+
+<!-- ... rest of your HTML code ... -->
+
+</html>

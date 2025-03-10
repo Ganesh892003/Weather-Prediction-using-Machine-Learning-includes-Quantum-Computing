@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,500;1,600;1,700&family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;1,200;1,400;1,500;1,600;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  background-color: #1c2143;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  flex: 6.5;
+}
+
+h1 {
+  color: #fff;
+  font-family: Inter;
+  font-size: 52px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 64px;
+  letter-spacing: 0.2px;
+  animation: slideUp 1s ease-in-out;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1.5;
+}
+
+.circle {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c2143;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin: 10px;
+  animation: slideUp 0.5s ease-in-out;
+  animation-fill-mode: backwards;
+  opacity: 0;
+}
+
+.selected {
+  background-color: #fff;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.containerp {
+
+  flex: 60%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.container-title {
+  font-size: 2rem;
+  font-weight: 500;
+  width: 100%;
+
+  margin: 2rem 0 0 5rem;
+
+}
+
+
+.post-container {
+
+
+  margin-top: 2rem;
+  display: grid;
+  place-items: start;
+  gap: 2rem;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.post {
+  width: 800px;
+
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+ 
+
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+
+.post-footer {
+  display: grid;
+  gap: 0.5rem;
+}
+
+
+.post-footer p {
+  font-size: .9rem;
+  display: flex;
+
+}
+
+.image-stack {
+  position: relative;
+  width: 30%;
+
+}
+
+.img-1 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+}
+
+.img-2 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 15px;
+}
+
+.img-3 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 30px;
+}
+
+.img-4 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 45px;
+}

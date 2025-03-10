@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Weather.css') }}" />
+    <title>Weather</title>
+</head>
+<body>
+    <div class="calendar-view" id="calendarView">
+        <div class="calendar-container">
+            <h2>{{ current_month }} {{ current_year }}</h2>
+            <div class="calendar-grid" id="calendarGrid">
+                {% for day in calendar_days %}
+                    <div class="calendar-day {% if day.is_today %}today{% endif %}" data-date="{{ day.date }}">
+                        <span class="day-name">{{ day.day_name[:3] }}</span>
+                        <span class="day-number">{{ day.day_number }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="day-details-view" id="dayDetailsView" style="display: none;">
+        <div class="day-details-container">
+            <button class="back-button" id="backButton">Back</button>
+            <h2 id="selectedDate"></h2>
+            <div class="day-details-content">
+                <div class="temp-section">
+                    <div class="main-temp" id="dayTemp">{{ data.temp }}</div>
+                    <div class="day-info">
+                        <span id="dayName"></span>
+                        <span id="dateDisplay"></span>
+                    </div>
+                    <div class="subdata" id="subdata">
+                        <div class="weather-item">
+                            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                            <span>Wind</span>
+                            <span id="dayWind">{{ data.wind }}</span>
+                        </div>
+                        <div class="weather-item">
+                            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v4h2zm0 6h-2v2h2z"/></svg>
+                            <span>Humidity</span>
+                            <span id="dayHumidity">{{ data.humidity }}</span>
+                        </div>
+                        <div class="weather-item">
+                            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-1-8h2v2h-2zm0-4h2v2h-2z"/></svg>
+                            <span>Weather</span>
+                            <span id="dayType">{{ data.type }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sun-times" id="sunTimes">
+                    <div class="clock-section">
+                        <span class="container-text">Sunrise</span>
+                        <div class="clock">
+                            <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="none" stroke="#fff" stroke-width="2"/></svg>
+                            <span id="daySunrise">{{ data.Sunrise }}</span>
+                        </div>
+                    </div>
+                    <div class="clock-section">
+                        <span class="container-text">Sunset</span>
+                        <div class="clock">
+                            <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="none" stroke="#fff" stroke-width="2"/></svg>
+                            <span id="daySunset">{{ data.Sunset }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hourly-forecast-container">
+                <h3>24-Hour Forecast</h3>
+                <div class="hourly-list" id="hourlyList"></div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <a href="/" onclick="return navigate('/');">
+            <div class="circle selected">
+                <svg viewBox="0 0 24 24">
+                    <path fill="black" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14v-2h2v2zm2-4h-2V7h2z"/>
+                </svg>
+            </div>
+        </a>
+        <a href="/floodzone" onclick="return navigate('/floodzone');">
+            <div class="circle">
+                <svg viewBox="0 0 24 24">
+                    <path fill="white" d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.83L18 11v7H6v-7l6-6.17zM6 14c0-1.1.9-2 2-2s2 .9 2 2c0 1.1-.9 2-2 2H6v-2zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2c0 1.1.9 2 2 2h2v-2z"/>
+                </svg>
+            </div>
+        </a>
+        <a href="/alert" onclick="return navigate('/alert');">
+            <div class="circle">
+                <svg viewBox="0 0 24 24">
+                    <path fill="white" d="M19 4h-1V3c0-.55-.45-1-1-1s-1 .45-1 1v1H8V3c0-.55-.45-1-1-1s-1 .45-1 1v1H5C3.89 4 3 4.9 3 6v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm-6-5l-4-4 1.41-1.41L13 12.17l4.59-4.58L19 9l-6 6z"/>
+                </svg>
+            </div>
+        </a>
+        <a href="/shelter" onclick="return navigate('/shelter');">
+            <div class="circle">
+                <svg viewBox="0 0 24 24">
+                    <path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+            </div>
+        </a>
+        <a href="/sos" onclick="return navigate('/sos');">
+            <div class="circle">
+                <svg viewBox="0 0 24 24">
+                    <path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+                </svg>
+            </div>
+        </a>
+    </nav>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const calendarView = document.getElementById("calendarView");
+            const dayDetailsView = document.getElementById("dayDetailsView");
+            const calendarGrid = document.getElementById("calendarGrid");
+            const backButton = document.getElementById("backButton");
+            const selectedDateDisplay = document.getElementById("selectedDate");
+            const dateDisplay = document.getElementById("dateDisplay");
+            const dayNameDisplay = document.getElementById("dayName");
+            const dayTemp = document.getElementById("dayTemp");
+            const dayWind = document.getElementById("dayWind");
+            const dayHumidity = document.getElementById("dayHumidity");
+            const dayType = document.getElementById("dayType");
+            const daySunrise = document.getElementById("daySunrise");
+            const daySunset = document.getElementById("daySunset");
+            const hourlyList = document.getElementById("hourlyList");
+            const subdata = document.getElementById("subdata");
+            const sunTimes = document.getElementById("sunTimes");
+
+            // Log initial DOM state
+            console.log("Initial calendar grid children count:", calendarGrid.children.length);
+            console.log("Initial calendar grid HTML:", calendarGrid.innerHTML);
+
+            // Apply initial visibility and animation
+            const ensureDaysVisible = () => {
+                const calendarDays = Array.from(calendarGrid.children);
+                console.log("Ensuring visibility for calendar days, count:", calendarDays.length);
+                calendarDays.forEach((day, index) => {
+                    day.style.display = "block"; // Force display
+                    day.style.opacity = "1"; // Force opacity
+                    day.style.transition = "opacity 0.5s ease"; // Smooth transition
+                    day.classList.add("fade-in"); // Apply fade-in class
+                    console.log(`Day ${index} - Date: ${day.getAttribute("data-date")}, Display: ${day.style.display}, Opacity: ${day.style.opacity}`);
+                });
+            };
+
+            // Initial setup
+            ensureDaysVisible();
+
+            // Event delegation for day clicks
+            calendarGrid.addEventListener("click", (event) => {
+                const dayElement = event.target.closest(".calendar-day");
+                if (!dayElement) {
+                    console.log("No calendar-day element found for click");
+                    return;
+                }
+
+                const selectedDate = dayElement.getAttribute("data-date");
+                const dayName = dayElement.querySelector(".day-name").textContent;
+                const dayNumber = dayElement.querySelector(".day-number").textContent;
+
+                console.log("Day clicked - Selected date:", selectedDate, "Day name:", dayName);
+
+                selectedDateDisplay.textContent = `${dayName}, ${selectedDate}`;
+                dateDisplay.textContent = selectedDate;
+                dayNameDisplay.textContent = dayName;
+
+                // Fetch data
+                fetch('/get_24hour_forecast', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ selected_date: selectedDate })
+                })
+                .then(response => {
+                    console.log("Fetch response - Status:", response.status, "OK:", response.ok);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Fetched data:", data);
+                    hourlyList.innerHTML = '';
+
+                    if (data && data.length > 0 && data[0].temp !== "N/A °C") {
+                        dayTemp.textContent = data[0].temp || "N/A";
+                        dayWind.textContent = data[0].wind || "N/A";
+                        dayHumidity.textContent = data[0].humidity || "N/A";
+                        dayType.textContent = data[0].type || "N/A";
+                        daySunrise.textContent = data[0].sunrise || "N/A";
+                        daySunset.textContent = data[0].sunset || "N/A";
+
+                        data.forEach((hour, index) => {
+                            const hourItem = document.createElement('div');
+                            hourItem.className = 'hourly-item';
+                            hourItem.innerHTML = `<span>${hour.hour}</span><span>${hour.temp}</span><span>${hour.type}</span>`;
+                            hourItem.style.transition = "opacity 0.5s ease";
+                            setTimeout(() => hourItem.classList.add("fade-in"), index * 50);
+                            hourlyList.appendChild(hourItem);
+                        });
+                    } else {
+                        dayTemp.textContent = "N/A";
+                        dayWind.textContent = "N/A";
+                        dayHumidity.textContent = "N/A";
+                        dayType.textContent = "N/A";
+                        daySunrise.textContent = "N/A";
+                        daySunset.textContent = "N/A";
+                        hourlyList.innerHTML = '<div class="no-data">No forecast data available</div>';
+                    }
+
+                    console.log("Transitioning to day details view");
+                    calendarView.classList.add("slide-out");
+                    setTimeout(() => {
+                        calendarView.style.display = "none";
+                        dayDetailsView.style.display = "flex";
+                        subdata.classList.add("slide-in");
+                        sunTimes.classList.add("slide-in");
+                        dayDetailsView.classList.add("slide-in");
+                    }, 600);
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                    dayTemp.textContent = "N/A";
+                    dayWind.textContent = "N/A";
+                    dayHumidity.textContent = "N/A";
+                    dayType.textContent = "N/A";
+                    daySunrise.textContent = "N/A";
+                    daySunset.textContent = "N/A";
+                    hourlyList.innerHTML = '<div class="no-data">Error fetching data</div>';
+
+                    console.log("Transitioning to day details view despite error");
+                    calendarView.classList.add("slide-out");
+                    setTimeout(() => {
+                        calendarView.style.display = "none";
+                        dayDetailsView.style.display = "flex";
+                        subdata.classList.add("slide-in");
+                        sunTimes.classList.add("slide-in");
+                        dayDetailsView.classList.add("slide-in");
+                    }, 600);
+                });
+            });
+
+            // Back button handler
+            backButton.addEventListener("click", () => {
+                console.log("Back button clicked");
+                dayDetailsView.classList.add("slide-out");
+                subdata.classList.remove("slide-in");
+                sunTimes.classList.remove("slide-in");
+
+                setTimeout(() => {
+                    dayDetailsView.style.display = "none";
+                    dayDetailsView.classList.remove("slide-in");
+                    calendarView.style.display = "flex"; // Ensure flex display
+                    calendarView.style.justifyContent = "center"; // Explicitly center
+                    calendarView.style.alignItems = "center"; // Explicitly center
+                    calendarView.style.transform = "translateX(0)"; // Reset transform
+                    calendarView.classList.remove("slide-out");
+                    calendarView.classList.add("slide-in");
+
+                    // Force reflow to apply styles
+                    calendarView.offsetHeight; // Trigger reflow
+
+                    // Ensure calendar days are visible
+                    console.log("Checking calendar grid children after back:", calendarGrid.children.length);
+                    console.log("Calendar grid HTML after back:", calendarGrid.innerHTML);
+                    ensureDaysVisible();
+
+                    console.log("Calendar view reset completed");
+                }, 600);
+            });
+
+            // Navigation function
+            window.navigate = function(url) {
+                window.location.href = url;
+                return false;
+            };
+
+            // Navbar animation for vertical layout
+            const circles = document.querySelectorAll(".circle");
+            circles.forEach((circle, index) => {
+                circle.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+                circle.style.transitionDelay = `${index * 0.2}s`; // Maintain staggered animation
+                circle.classList.add("fade-in");
+            });
+        });
+    </script>
+</body>
+</html>

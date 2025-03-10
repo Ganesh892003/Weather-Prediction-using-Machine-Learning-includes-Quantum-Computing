@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        .map-container{
+ 
+   
+            width: 80%;
+            margin: 1rem auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 shadow">
+        <div class="container-fluid p-0 ">
+            <a class="navbar-brand bg-primary p-2 p-md-4 fw-bold  text-white   " href="#">Garbage Waste Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse p-3 p-md-0 " id="navbarSupportedContent">
+                <ul class="navbar-nav text-black  gap-md-3 fw-bold ms-auto me-5 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link  " aria-current="page" href="/">Waste Classification</a>
+                    </li>
+
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pollution">Pollution</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  " href="/AQI">AQI</a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container  mt-5 ">
+       <div class="row">
+        <div class="col-lg-6 container img-fluid p-1" id="map">
+            {{map | safe}}
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110204.58771482938!2d77.93473206846178!3d30.325550807200845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929c356c888af%3A0x4c3562c032518799!2sDehradun%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1699091166263!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous">
+
+        // Function to get current location
+        
+    </script>
+</body>
+
+</html>

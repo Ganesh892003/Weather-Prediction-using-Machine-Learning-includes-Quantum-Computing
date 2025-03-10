@@ -1,0 +1,175 @@
+{
+    "status": "OK",
+    "results": [
+      {
+        "location": {
+          "lat": "13.0863600",
+          "lng": "80.2610400"
+        },
+        "name": "Bentinck Higher Secondary School for Girls-Main Entrance",
+        "address": "Sampath Road, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "",
+        "distanceMeter": "147.89"
+      },
+      {
+        "location": {
+          "lat": "13.0868700",
+          "lng": "80.2613400"
+        },
+        "name": "ST. Matthias Anglo-Indian Higher Secondary School",
+        "address": "Vepery Church Road, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4425323123",
+        "distanceMeter": "206.22"
+      },
+      {
+        "location": {
+          "lat": "13.0867200",
+          "lng": "80.2600700"
+        },
+        "name": "Bentinck Higher Secondary School for Girls-Entrance 1",
+        "address": "Service Road, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "",
+        "distanceMeter": "218.11"
+      },
+      {
+        "location": {
+          "lat": "13.0852800",
+          "lng": "80.2589600"
+        },
+        "name": "Doveton Girls Higher Secondary School",
+        "address": "Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4465653005",
+        "distanceMeter": "232.78"
+      },
+      {
+        "location": {
+          "lat": "13.0863400",
+          "lng": "80.2629600"
+        },
+        "name": "Narayana Olympiad School",
+        "address": "E V K Sampath Salai, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "",
+        "distanceMeter": "249.06"
+      },
+      {
+        "location": {
+          "lat": "13.0871200",
+          "lng": "80.2623800"
+        },
+        "name": "C. S. I. ST. Paul's Higher Secondary School",
+        "address": "Vepery Church Road, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4425323934",
+        "distanceMeter": "270.84"
+      },
+      {
+        "location": {
+          "lat": "13.0871900",
+          "lng": "80.2627000"
+        },
+        "name": "Jingle Kids",
+        "address": "Vepery Church Road, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4443235870",
+        "distanceMeter": "296.46"
+      },
+      {
+        "location": {
+          "lat": "13.0861200",
+          "lng": "80.2584900"
+        },
+        "name": "Doveton-Corrie Boys Higher Secondary School",
+        "address": "Ritherdon Road, Purasawalkam, Chennai, Tamil Nadu, 600084",
+        "phone": "+91 4425322377",
+        "distanceMeter": "306.93"
+      },
+      {
+        "location": {
+          "lat": "13.0823800",
+          "lng": "80.2598200"
+        },
+        "name": "Anita Methodist Matriculation Higher Secondary School",
+        "address": "Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4425324525",
+        "distanceMeter": "325.48"
+      },
+      {
+        "location": {
+          "lat": "13.0855800",
+          "lng": "80.2641100"
+        },
+        "name": "Guru Shree Shantivijai Jain Vidhyalaya",
+        "address": "Vepery High Road, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4425322541",
+        "distanceMeter": "332.31"
+      },
+      {
+        "location": {
+          "lat": "13.0823700",
+          "lng": "80.2596900"
+        },
+        "name": "Balar Kalvi Nilayam",
+        "address": "1st Lane, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4425321871",
+        "distanceMeter": "332.68"
+      },
+      {
+        "location": {
+          "lat": "13.0823700",
+          "lng": "80.2596900"
+        },
+        "name": "Opportunity School",
+        "address": "1st Lane, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "",
+        "distanceMeter": "332.68"
+      },
+      {
+        "location": {
+          "lat": "13.0832700",
+          "lng": "80.2585900"
+        },
+        "name": "Doveton Girl's Higher Secondary School",
+        "address": "Ritherdon Road, Vepery, Chennai, Tamil Nadu, 600007",
+        "phone": "+91 4425325619",
+        "distanceMeter": "334.51"
+      },
+      {
+        "location": {
+          "lat": "13.0844900",
+          "lng": "80.2578800"
+        },
+        "name": "Kidzee",
+        "address": "Clemens Road, Purasawalkam, Chennai, Tamil Nadu, 600084",
+        "phone": "",
+        "distanceMeter": "353.26"
+      },
+      {
+        "location": {
+          "lat": "13.0855900",
+          "lng": "80.2575900"
+        },
+        "name": "Genius Kids Play-School",
+        "address": "Clemens Road, Purasawalkam, Chennai, Tamil Nadu, 600084",
+        "phone": "",
+        "distanceMeter": "384.57"
+      },
+      {
+        "location": {
+          "lat": "13.0880000",
+          "lng": "80.2591500"
+        },
+        "name": "S. M. D. P. V. C. Higher Secondary School",
+        "address": "Rotler Street, Choolai, Chennai, Tamil Nadu, 600112",
+        "phone": "+91 4425321070",
+        "distanceMeter": "391.56"
+      },
+      {
+        "location": {
+          "lat": "13.0882900",
+          "lng": "80.2626100"
+        },
+        "name": "C. S. I. ST. Paul's Church Nursery and Primary School",
+        "address": "Hunters Road, Choolai, Chennai, Tamil Nadu, 600112",
+        "phone": "",
+        "distanceMeter": "397.85"
+      }
+    ]
+  }

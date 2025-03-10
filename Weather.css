@@ -1,0 +1,351 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Calendar view */
+.calendar-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1c2143;
+    color: white;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 1;
+}
+
+.calendar-view.slide-out {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.calendar-view.slide-in {
+    opacity: 1;
+    transform: translateX(0); /* Ensure centered position */
+    display: flex; /* Reinforce flex behavior */
+    justify-content: center; /* Reinforce centering */
+    align-items: center; /* Reinforce centering */
+}
+
+.calendar-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Calendar day styles */
+.calendar-day {
+    display: block !important; /* Force visibility */
+    opacity: 1 !important; /* Force opacity */
+    background-color: #1c2143;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.5s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 1px solid rgba(70, 130, 180, 0.5); /* Transparent blue border */
+    box-shadow: 0 0 10px rgba(70, 130, 180, 0.3); /* Subtle glow */
+}
+
+.calendar-day:hover {
+    background-color: #3e5580;
+    box-shadow: 0 0 15px rgba(70, 130, 180, 0.5); /* Glow on hover */
+}
+
+.calendar-day.today {
+    background-color: #4682b4;
+    border: 1px solid rgba(255, 255, 255, 0.7); /* Highlight today */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.calendar-day .day-name,
+.calendar-day .day-number {
+    display: block;
+    font-size: 14px;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+/* Day details view */
+.day-details-view {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #1a2a44;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    overflow-y: auto;
+}
+
+.day-details-view.slide-in {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.day-details-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #e65b50;
+}
+
+/* Temp section */
+.temp-section {
+    margin-bottom: 20px;
+}
+
+.main-temp {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.day-info {
+    font-size: 18px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Subdata and sun times animations */
+.subdata, .sun-times {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.subdata.slide-in, .sun-times.slide-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.weather-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    border: 1px solid rgba(70, 130, 180, 0.5); /* Transparent blue border */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(70, 130, 180, 0.3); /* Subtle glow */
+    transition: box-shadow 0.3s ease;
+}
+
+.weather-item:hover {
+    box-shadow: 0 0 15px rgba(70, 130, 180, 0.5); /* Glow on hover */
+}
+
+.weather-item svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.weather-item span:nth-child(2) {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.weather-item span:nth-child(3) {
+    font-size: 16px;
+}
+
+/* Sun times */
+.sun-times {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.clock-section {
+    text-align: center;
+    border: 1px solid rgba(70, 130, 180, 0.5); /* Transparent blue border */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(70, 130, 180, 0.3); /* Subtle glow */
+    transition: box-shadow 0.3s ease;
+}
+
+.clock-section:hover {
+    box-shadow: 0 0 15px rgba(70, 130, 180, 0.5); /* Glow on hover */
+}
+
+.container-text {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.clock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sun-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.clock span {
+    font-size: 16px;
+}
+
+/* Hourly forecast */
+.hourly-forecast-container {
+    margin-top: 30px;
+}
+
+.hourly-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.hourly-item {
+    background-color: #2e4066;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 80px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid rgba(70, 130, 180, 0.5); /* Transparent blue border */
+    box-shadow: 0 0 10px rgba(70, 130, 180, 0.3); /* Subtle glow */
+    transition: box-shadow 0.3s ease;
+}
+
+.hourly-item:hover {
+    box-shadow: 0 0 15px rgba(70, 130, 180, 0.5); /* Glow on hover */
+}
+
+.no-data {
+    color: #ff6f61;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid rgba(70, 130, 180, 0.5); /* Transparent blue border */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(70, 130, 180, 0.3); /* Subtle glow */
+    transition: box-shadow 0.3s ease;
+}
+
+.no-data:hover {
+    box-shadow: 0 0 15px rgba(70, 130, 180, 0.5); /* Glow on hover */
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 60px; /* Adjusted for vertical layout */
+    background: transparent; /* Transparent background */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    padding: 10px 0;
+}
+
+.circle {
+    width: 40px; /* Smaller size to match screenshot */
+    height: 40px;
+    background: transparent; /* Transparent background */
+    border: 2px solid rgba(255, 255, 255, 0.7); /* White outline with transparency */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease, opacity 0.5s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: scale(0);
+    margin: 15px 0; /* Increased spacing between icons */
+}
+
+.circle.selected {
+    border-color: #ff6f61; /* Highlight selected with orange */
+    background: rgba(255, 111, 97, 0.2); /* Slight orange tint for selected */
+}
+
+.circle:hover {
+    border-color: #ffffff; /* Brighter white on hover */
+    background: rgba(255, 255, 255, 0.1); /* Slight white tint on hover */
+}
+
+.circle.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+svg {
+    width: 24px;
+    height: 24px;
+    fill: white; /* White icons */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .calendar-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .day-details-container {
+        padding: 10px;
+    }
+
+    .main-temp {
+        font-size: 36px;
+    }
+
+    .weather-item span {
+        font-size: 14px;
+    }
+
+    .navbar {
+        width: 50px; /* Slightly smaller for mobile */
+    }
+
+    .circle {
+        width: 35px; /* Smaller for mobile */
+        height: 35px;
+        margin: 10px 0;
+    }
+}
